@@ -15,4 +15,4 @@ for sheet_name in book.sheet_names()[1:-1]:
         with open(output_dir / f"{sheet_name}.csv", "w", newline="") as output_file:
             for i in range(2, sheet.nrows):
                 writer = csv.writer(output_file, delimiter="|")
-                writer.writerow([row.value for row in sheet.row(i)])
+                writer.writerow([row.value.strip().replace("\n", ";") for row in sheet.row(i)])
